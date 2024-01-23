@@ -1,0 +1,94 @@
+{
+  "name": "misson-todo-js",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "gulp",
+    "build": "gulp build",
+    "revbuild": "gulp revbuild",
+    "htmlhint": "htmlhint 'dist/**/*.html'",
+    "eslint": "eslint --fix 'src/js/**/*.js'",
+    "stylelint": "stylelint --fix 'src/scss/**/*.scss'",
+    "format": "prettier --write 'src/**/*.{pug,js,scss}'"
+  },
+  "private": true,
+  "engines": {
+    "node": ">=18.18.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@babel/preset-env": "^7.22.20",
+    "@babel/register": "^7.22.15",
+    "@prettier/plugin-pug": "^1.20.1",
+    "@webpack-cli/init": "^1.1.3",
+    "babel-loader": "^8.3.0",
+    "browser-sync": "^2.29.3",
+    "core-js": "^3.33.0",
+    "del": "^6.1.1",
+    "eslint": "^8.51.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-prettier": "^8.10.0",
+    "eslint-plugin-import": "^2.28.1",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-ejs": "^5.1.0",
+    "gulp-html": "^5.0.0",
+    "gulp-htmlhint": "^4.0.2",
+    "gulp-imagemin": "^7.1.0",
+    "gulp-notify": "^4.0.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-prettier": "^4.0.0",
+    "gulp-pug": "^5.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-rev": "9.0.0",
+    "gulp-rev-delete-original": "^0.2.3",
+    "gulp-rev-replace": "^0.4.4",
+    "gulp-sass": "^5.1.0",
+    "htmlhint": "^1.1.4",
+    "husky": "^4.3.8",
+    "imagemin-pngquant": "^9.0.2",
+    "lint-staged": "^12.5.0",
+    "prettier": "^2.8.8",
+    "sass": "^1.69.1",
+    "stylelint": "^14.16.1",
+    "stylelint-config-prettier": "^9.0.5",
+    "stylelint-config-recess-order": "^3.1.0",
+    "stylelint-config-standard": "^24.0.0",
+    "stylelint-config-standard-scss": "^3.0.0",
+    "stylelint-prettier": "^2.0.0",
+    "stylelint-scss": "^4.7.0",
+    "webpack": "^5.88.2",
+    "webpack-cli": "^4.10.0",
+    "webpack-merge": "^5.9.0",
+    "webpack-stream": "^7.0.0"
+  },
+  "overrides": {
+    "ejs": "3.1.9",
+    "glob-parent": "6.0.2",
+    "got": "11.8.6",
+    "trim-newlines": "3.0.1",
+    "semver-regex": "3.1.4",
+    "http-cache-semantics": "4.1.1",
+    "nth-check": "2.0.1"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "dist/**/*.html": [
+      "htmlhint",
+      "prettier --write"
+    ],
+    "src/js/**/*.js": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "src/scss/**/*.scss": [
+      "stylelint --fix",
+      "prettier --write"
+    ]
+  }
+}

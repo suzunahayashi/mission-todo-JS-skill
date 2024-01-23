@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "confgen"
+version = "0.1.0"
+description = ""
+authors = ["Kazuya Takei <kazuya.takei@nijibox.co.jp>"]
+license = "Apache-2.0"
+
+[tool.poetry.dependencies]
+python = "^3.7 | ^3.8"
+htpasswd = "^2.3"
+Jinja2 = "^2.11.2"
+
+[tool.poetry.dev-dependencies]
+
+[tool.poetry.scripts]
+confgen = "confgen:main"
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"

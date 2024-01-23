@@ -1,0 +1,41 @@
+@use 'mixin' as mi;
+
+.onlyPc {
+  display: block;
+
+  &.--inline {
+    display: inline;
+  }
+
+  &.--flex {
+    display: flex;
+  }
+
+  @include mi.mq {
+    display: none;
+
+    &.--inline {
+      display: none;
+    }
+
+    &.--flex {
+      display: none;
+    }
+  }
+}
+
+.onlySp {
+  display: none;
+
+  @include mi.mq {
+    display: block;
+
+    &.--inline {
+      display: inline;
+    }
+
+    &.--flex {
+      display: flex;
+    }
+  }
+}
