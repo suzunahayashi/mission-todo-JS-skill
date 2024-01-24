@@ -1,3 +1,3 @@
-import fn from './modules/sample';
+import todo from './modules/todo';
 
-fn('sample');
+todo();
