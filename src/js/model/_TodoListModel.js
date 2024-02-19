@@ -1,3 +1,4 @@
+import todo from "../modules/todo.js";
 import { EventEmitter } from "./_eventEmitter.js";
 
 export class TodoListModel extends EventEmitter {
@@ -47,6 +48,27 @@ export class TodoListModel extends EventEmitter {
      */
     addTodo(todoItem) {
         this.#items.push(todoItem);
+        this.emitChange();
+    }
+
+    /**
+     * 指定した`id`のTodoItemの`completed`を更新する
+     * @param {object} updateData
+     */
+    updateTodo(updateData) {
+        const todoItem = this.#items.find(item => item.id === updateData.id);
+        if(todoItem) {
+            todoItem.completed = updateData.completed;
+            this.emitChange();
+        }
+    }
+
+    /**
+     * 指定したidのTodoItemを削除する
+     * @param {number} id
+     */
+    deleteTodo(id) {
+        this.#items = this.#items.filter(item => item.id !== id);
         this.emitChange();
     }
 }
