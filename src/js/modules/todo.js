@@ -45,21 +45,20 @@ const todo = () => {
     * @type {Element} Todoリストをまとめる、ul要素を格納する
     */
     const todoListElement = document.createElement('ul');
-      // TodoItem要素を作成しulに追加
-      const todoItems = todoListModel.getTodoItems();
-      todoItems.forEach(item => {
-        // TodoリストをまとめるList要素
-        const todoItemElement = document.createElement('li');
-        todoItemElement.textContent = item.title;
-        todoListElement.appendChild(todoItemElement);
-      });
+    // TodoItem要素を作成しulに追加
+    const todoItems = todoListModel.getTodoItems();
+    todoItems.forEach(item => {
+      // TodoリストをまとめるList要素
+      const todoItemElement = createTodoItemElement(item);
+      todoListElement.appendChild(todoItemElement);
+    });
+    
     // Todoリストのコンテナ要素の中身を更新
     containerElement.innerHTML = '';
     containerElement.appendChild(todoListElement);
 
     // Todoアイテム数の更新
-    todoItemCount += 1;
-    todoItemCountElement.textContent = `ToDoアイテム数: ${todoItemCount}`;
+    todoItemCountElement.textContent = `ToDoアイテム数: ${todoListModel.getTotalCount()}`;
   });
   
   formElement.addEventListener("submit", (e) => {
@@ -73,6 +72,36 @@ const todo = () => {
     // 入力欄をリセット
     inputElement.value = "";
   });
+
+  function createTodoItemElement(item) {
+    const todoItemElement = document.createElement('li');
+
+    const checkboxElement = document.createElement('input');
+    checkboxElement.type = 'checkbox';
+    checkboxElement.checked = item.completed;
+    checkboxElement.addEventListener('change', () => {
+      todoListModel.updateTodo({
+        id: item.id,
+        completed: checkboxElement.checked
+      });
+    });
+
+    const deleteButton = document.createElement('button');
+    deleteButton.className = 'delete';
+    deleteButton.textContent = '削除';
+    deleteButton.addEventListener('click', () => {
+      todoListModel.deleteTodo(item.id);
+    });
+
+    const titleElement = document.createElement('span');
+    titleElement.textContent = item.title;
+
+    todoItemElement.appendChild(checkboxElement);
+    todoItemElement.appendChild(titleElement);
+    todoItemElement.appendChild(deleteButton);
+
+    return todoItemElement;
+  }
 }
 
 export default todo;
